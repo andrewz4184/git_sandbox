@@ -1,19 +1,29 @@
 <!DOCTYPE html>
+<html>
 
 <head>
-  <title>Drag and Drop File Upload</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta charset="utf-8">
-  <link rel="shortcut icon" href="/assets/favicon.ico">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Visualize CSV Files</title>
 </head>
 
 <body>
-  <div class="drop-zone">
-    <span class="drop-zone__prompt">Drop file here or click to upload</span>
-    <input type="file" name="myFile" class="drop-zone_input">
-  </div>
-
-  <script src="script.js"></script>
+    <input type="file" name="inputfile"
+            id="inputfile" accept=".csv">
+    <br>
+    <pre id="output"></pre>
+    <script src="scripts/read_csv.js"></script>
+    <script type="text/javascript">
+        document.getElementById('inputfile')
+            .addEventListener('change', function() {
+            var fr=new FileReader();
+            // fr.onload=function(){
+            //    document.getElementById('output')
+            //            .textContent=fr.result;
+            //}
+            fr.onload = loadHandler;
+            fr.onerror = errorHandler;
+            fr.readAsText(this.files[0]);
+        })
+    </script>
 </body>
+
+</html>
