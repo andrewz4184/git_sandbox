@@ -1,31 +1,23 @@
-.drop-zone {
-    max-width: 200px;
-    height: 200px;
-    padding: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: gray;
-    border: 4px dashed black;
-    border-radius: 15px;
-    font-weight: 500;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  .drop-zone:hover{
-    background-color:#DDDDDD;
-  }
-  .dragging{
-    background-color:lightgray;
-  }
-  .drop-zone--over {
-    border-style: solid;
-  }
+ul.list{
   
-  .drop-zone_input {
-    display: none;
-  }
-
+    width:220px;
+    height:330px;
+    display:none;
+    list-style-type: none;
+    position:absolute;
   
-  
+    top:11%;
+}
+li{
+    font-size:25px;
+    border: 1px solid black;
+    position:relative;
+    left:-18px;
+    
+}
+#dropdown{
+    position:absolute;
+    width:150px;
+    top:10%;
+    left:30px;
+}
