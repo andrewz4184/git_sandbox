@@ -33,30 +33,25 @@ var i = 0;
 $(document).ready(function () {
 
     $("#dropdown").on("click", function () {
-        if (dropdownClickShow) {
-            $("ul.list").hide();
-        } else {
-            $("ul.list").show();
-        }
         dropdownClickShow = !dropdownClickShow;
         d3.csv("TechCrunchcontinentalUSA.csv").then(function (data) {
-         
+
             Object.keys(data[0]).forEach((prop) => names.push(prop)); //Grabs the object properties and stores it into an array
-            
-            
-            while(i < names.length){ 
-                $("ul.list").append("<li>" + names[i] + "</li>"); 
+
+
+            while(i < names.length){
+                $("ul.list").append("<li>" + names[i] + "</li>");
                 i++;
             }
             i = 500;
-           
-            
+
+
         });
 
-        
+
     });
-   
-    
-    
+
+
+
 });
 

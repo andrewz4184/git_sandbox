@@ -2,6 +2,15 @@
 function parseCSV(csv_content) {
     d3_parser = d3.csvParse(csv_content)
     console.log(d3_parser)
+    if (d3_parser.length === 0) {
+        return
+    }
+    console.log(d3_parser[0])
+    for (var key in d3_parser[0]) {
+
+        $("#headers").append(`<option value=\"${key}\">${key}</option>`);
+    }
+
 }
 
 function loadHandler(event) {
