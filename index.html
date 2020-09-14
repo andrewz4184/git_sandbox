@@ -11,23 +11,63 @@
 </head>
 
 <body>
-    <input type="file" name="inputfile"
-            id="inputfile" accept=".csv">
-    <br>
+    <h1></h1>
+    <div class=container>
 
-    <label >Headers</label>
-    <select name="headers" id="headers">
-    </select>
-    <pre id="output"></pre>
+        <input type="file" name="inputfile" id="inputfile" accept=".csv">
+        <br>
+
+        <label id="headerslabel">Headers</label>
+        <select name="headers" id="headers"></select>
+
+       
+
+        <pre id="output"></pre>
+
+    </div>
 
     <script type="text/javascript">
+        var header = document.getElementById('headers');
+
+
+        function parseCSV(csv_content) {
+            d3_parser = d3.csvParse(csv_content)
+            console.log(d3_parser)
+            if (d3_parser.length === 0) {
+                return
+            }
+            console.log(d3_parser[0])
+            for (var key in d3_parser[0]) {
+
+                $("#headers").append(`<option value=\"${key}\">${key}</option>`);
+            }
+
+        }
+
+        function loadHandler(event) {
+            var csv = event.target.result;
+            parseCSV(csv);
+        }
+
+        function errorHandler(evt) {
+            if (evt.target.error.name == "NotReadableError") {
+                alert("Canno't read file !");
+            }
+        }
         document.getElementById('inputfile')
-            .addEventListener('change', function() {
-            var fr=new FileReader();
-            fr.onload = loadHandler;
-            fr.onerror = errorHandler;
-            fr.readAsText(this.files[0]);
-        })
+            .addEventListener('change', function () {
+                var fr = new FileReader();
+                fr.onload = loadHandler;
+                fr.onerror = errorHandler;
+                fr.readAsText(this.files[0]);
+            });
+
+
+        header.onchange = function () {
+            var opt = header.options[header.selectedIndex];
+            $("h1").text(opt.value);
+            console.log(opt.value);
+        };
     </script>
 </body>
 
